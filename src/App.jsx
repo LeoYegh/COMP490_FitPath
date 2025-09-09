@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <h1>FitPal</h1>
+      <h1>FitPall</h1>
     </>
   )
 }
