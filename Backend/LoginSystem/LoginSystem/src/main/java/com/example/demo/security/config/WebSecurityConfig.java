@@ -2,7 +2,6 @@ package com.example.demo.security.config;
 
 import com.example.demo.appuser.AppUserService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,17 +16,22 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfig {
 
     private final AppUserService appUserService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder; // make sure a @Bean exists elsewhere
 
-  @Bean
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
+                // allow your registration endpoint (v1, v2, etc.)
                 .requestMatchers("/api/v*/registration/**").permitAll()
-                .anyRequest().authenticated().and()
+                .anyRequest().authenticated()
             )
-            .formLogin(); // keep for simple form-based login
+            // default login for other endpoints; remove if you don't want a login page
+            .formLogin(form -> form.permitAll());
+
+        // register your custom DAO auth provider
+        http.authenticationProvider(daoAuthenticationProvider());
         return http.build();
     }
 
@@ -36,7 +40,6 @@ public class WebSecurityConfig {
         return config.getAuthenticationManager();
     }
 
-    @SuppressWarnings("deprecation")
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -44,5 +47,4 @@ public class WebSecurityConfig {
         provider.setUserDetailsService(appUserService);
         return provider;
     }
-
 }
