@@ -4,9 +4,8 @@ import com.example.demo.appuser.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -15,36 +14,37 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
-    private final AppUserService appUserService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder; // make sure a @Bean exists elsewhere
+  private final AppUserService appUserService;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                // allow your registration endpoint (v1, v2, etc.)
-                .requestMatchers("/api/v*/registration/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            // default login for other endpoints; remove if you don't want a login page
-            .formLogin(form -> form.permitAll());
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+      .csrf(csrf -> csrf.disable()) // ok for dev; enables POST /login without CSRF
+      .authorizeHttpRequests(auth -> auth
+        .requestMatchers(HttpMethod.POST, "/api/v1/registration").permitAll()
+        .requestMatchers(HttpMethod.GET,  "/api/v1/registration/confirm").permitAll()
+        .anyRequest().authenticated()
+      )
+      .formLogin(form -> form
+        .permitAll()
+        .defaultSuccessUrl("/", true)   // <- send to index.html after login
+      )
+      .logout(logout -> logout
+        .logoutUrl("/logout")
+        .logoutSuccessUrl("/login?logout")
+        .permitAll()
+      );
 
-        // register your custom DAO auth provider
-        http.authenticationProvider(daoAuthenticationProvider());
-        return http.build();
-    }
+    http.authenticationProvider(daoAuthenticationProvider());
+    return http.build();
+  }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
-
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(bCryptPasswordEncoder);
-        provider.setUserDetailsService(appUserService);
-        return provider;
-    }
+  @Bean
+  public DaoAuthenticationProvider daoAuthenticationProvider() {
+    var provider = new DaoAuthenticationProvider();
+    provider.setPasswordEncoder(bCryptPasswordEncoder);
+    provider.setUserDetailsService(appUserService);
+    return provider;
+  }
 }
