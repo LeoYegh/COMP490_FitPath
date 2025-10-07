@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import NavBar from './Components/Navbar/NavBar'
 
-import './App.css'
+const App = () => {
 
-function App() {
-  const [count, setCount] = useState(0)
+  const[ theme, setTheme] = useState('light');
 
   return (
-    <>
-      <h1>FitPall</h1>
-    </>
+    <div className='container'>
+      <NavBar theme={theme} setTheme={setTheme}/>
+    </div>
   )
+}
+
+function App(){
+  console.log(window.location)
+  return <NavBar />
 }
 
 export default App
