@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "../styles/SignUp.css";
 
+const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:8080";
+const ENDPOINT = "/api/v1/registration"; // Change to our backend route
+
 export default function SignUp() {
     const [form, setForm] = useState({
         firstName: "",
