@@ -1,20 +1,28 @@
-import React, { useState } from 'react'
-import NavBar from './Components/Navbar/NavBar'
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css'
+import Login from "./pages/Login";
 
-const App = () => {
+import SignUp from "./pages/SignUp"
 
-  const[ theme, setTheme] = useState('light');
 
-  return (
-    <div className='container'>
-      <NavBar theme={theme} setTheme={setTheme}/>
-    </div>
-  )
+function App() {
+
+    return <div className="App">
+        <Router>
+            <Navbar />
+            <Routes>
+                <Route path="/" exact element={<Home />} />
+                <Route path="/login" exact element={<Login />} />
+                <Route path="/signUp" exact element={<SignUp />} />
+            </Routes>
+        </Router>
+
+    </div>;
+
 }
 
-function App(){
-  console.log(window.location)
-  return <NavBar />
-}
 
 export default App
+
