@@ -32,12 +32,12 @@ function App() {
       createdAt: new Date().toISOString(),
     };
 
-    // Show on screen
+    // Show on screen (mostly placeholder to confirm it works)
     setLast(entry);
-    // Save (append) to localStorage-backed list
+    // Save to end of localStorage-backed list
     setEntries((prev) => [entry, ...prev]);
 
-    // If you want to clear inputs after submit:
+    // If we want to clear inputs after submit:
     e.currentTarget.reset();
   };
 
@@ -107,6 +107,3 @@ function App() {
 }
 export default App
 //the command is npm run dev
-//C:\Users\alice\Downloads\COMP490_FitPath-main
-// /cygdrive/c/users/alice/downloads/COMP490_Fitpath-main/COMP490_Fitpath-main
- //onPress={() => Alert.alert('Simple Button pressed')}
