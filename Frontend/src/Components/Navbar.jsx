@@ -22,5 +22,4 @@ function Navbar() {
     </div>
   );
 }
-//C:\Users\alice\OneDrive\Documents\extra fitpath files\COMP490_FitPath-main\Frontend
 export default Navbar
