@@ -7,7 +7,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/registration?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root         
-    password: '@Scrum380'
+    password: ''
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
