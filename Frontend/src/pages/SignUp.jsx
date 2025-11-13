@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/SignUp.css";
+import gymImage from "../assets/gym.jpeg";
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:8080";
 const ENDPOINT = "/api/v1/registration"; // Change to our backend route
@@ -98,6 +99,7 @@ export default function SignUp() {
                 {message && <div className="message success">{message}</div>}
                 {error && <div className="message error">{error}</div>}
             </div>
+            <div className="background-image" style={{ backgroundImage: `url(${gymImage})` }}></div>
         </div>
     )
 }
