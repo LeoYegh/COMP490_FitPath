@@ -16,9 +16,10 @@ function Navbar() {
         <Link to='/'>Home</Link>
         <Link to='/signUp'>Sign Up</Link>
         <Link to='/login'>Login</Link>
+        <Link to='/About'>About us</Link>
+        <Link to='/Contact'>Contact</Link>
       </div>
     </div>
   );
 }
-
 export default Navbar
