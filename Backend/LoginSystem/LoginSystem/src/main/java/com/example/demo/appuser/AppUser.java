@@ -1,55 +1,43 @@
 package com.example.demo.appuser;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-
-import java.util.Collections;
 import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-
 public class AppUser implements UserDetails {
 
-    @SequenceGenerator(
-        name="student_sequence",
-        sequenceName="student_sequence",
-        allocationSize=1
-    )
     @Id
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "student_sequence"
-    )
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String firstName;
     private String lastName;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
     private String password;
+
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
+
+    // default values so you don't get NPEs
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    
     public AppUser(String firstName, String lastName, String email, String password, AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -59,36 +47,18 @@ public class AppUser implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities(){
-        SimpleGrantedAuthority authority = 
-            new SimpleGrantedAuthority(appUserRole.firstName());
-        return Collections.singletonList(authority);
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Spring convention: authorities start with "ROLE_"
+        return List.of(new SimpleGrantedAuthority("ROLE_" + appUserRole.name()));
+        // If you don't want the prefix, make sure your security checks match.
+        // return List.of(new SimpleGrantedAuthority(appUserRole.name()));
     }
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+    @Override public String getPassword() { return password; }
+    @Override public String getUsername() { return email; }
 
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-    
-    public String getLastName() {
-        return lastName;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override public boolean isAccountNonLocked() {
-        return !locked;
-    }
+    @Override public boolean isAccountNonExpired() { return true; }
+    @Override public boolean isAccountNonLocked() { return !Boolean.TRUE.equals(locked); }
+    @Override public boolean isCredentialsNonExpired() { return true; }
+    @Override public boolean isEnabled() { return Boolean.TRUE.equals(enabled); }
 }

@@ -17,3 +17,15 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
     show-sql: true
+
+  mail:
+      host: smtp.gmail.com
+      port: 587
+      username: leoyegh@gmail.com            
+      password: aclg lrsu owpu tdkh             # for Gmail, use a 16-char App Password
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true

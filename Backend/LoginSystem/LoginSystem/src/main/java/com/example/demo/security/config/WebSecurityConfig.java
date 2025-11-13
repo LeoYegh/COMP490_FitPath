@@ -20,15 +20,15 @@ public class WebSecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
-      .csrf(csrf -> csrf.disable()) // ok for dev; enables POST /login without CSRF
+      .csrf(csrf -> csrf.disable())            // ok for dev
       .authorizeHttpRequests(auth -> auth
         .requestMatchers(HttpMethod.POST, "/api/v1/registration").permitAll()
         .requestMatchers(HttpMethod.GET,  "/api/v1/registration/confirm").permitAll()
-        .anyRequest().authenticated()
+        .anyRequest().authenticated()          // everything else requires login
       )
       .formLogin(form -> form
         .permitAll()
-        .defaultSuccessUrl("/", true)   // <- send to index.html after login
+        .defaultSuccessUrl("/", true)          // after login go to /
       )
       .logout(logout -> logout
         .logoutUrl("/logout")
