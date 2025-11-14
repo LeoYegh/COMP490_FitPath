@@ -2,6 +2,28 @@ import { useState } from "react";
 import "../styles/SignUp.css";
 import gymImage from "../assets/gym.jpeg";
 
+/**
+ * Component Name: SignUp
+ * Date: May 15, 2025
+ * Programmer: Toumas Solyman
+ *
+ * Description:
+ * This component allows new users to create an account by submitting personal information
+ * to the backend registration endpoint. It includes client-side validation, controlled input
+ * handling, and asynchronous API communication with fetch().
+ *
+ * Important Data Structures:
+ * - form (object): Stores user inputs for firstName, lastName, email, password, and role.
+ * - isLoading (boolean): Indicates whether the registration request is in progress.
+ * - message (string|null): Displays success messages after successful registration.
+ * - error (string|null): Displays error messages for failed submissions or validation errors.
+ *
+ * Algorithms:
+ * - Basic form validation: Ensures required fields are filled and email format is valid using regex.
+ * - Controlled component pattern: Keeps the form fields in sync with React state for predictable UI behavior.
+ * - Async/Await network call: Handles asynchronous POST request with error handling and user feedback.
+ */
+
 const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:8080";
 const ENDPOINT = "/api/v1/registration"; // Change to our backend route
 

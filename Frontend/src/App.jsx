@@ -7,6 +7,27 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import SignUp from "./pages/SignUp"
 
+/**
+ * Component Name: App
+ * Date: May 15, 2025
+ * Programmer: Toumas Solyman
+ *
+ * Description:
+ * This is the main component of the Fitness Tracker front-end application.
+ * It uses React Router to manage navigation between different pages, including Home,
+ * Login, SignUp, About, and Contact. It also renders the Navbar component across all routes.
+ *
+ * Important Data Structures:
+ * No internal state is used in this component. React Router's <Routes> and <Route>
+ * elements are used to structure the application's page navigation.
+ *
+ * Algorithms:
+ * No custom algorithms are used. The routing logic is declarative and handled
+ * entirely by React Router's built-in system. Each route maps a URL path to a component.
+ */
+
+
+
 
 function App() {
 
