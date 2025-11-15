@@ -1,3 +1,13 @@
+/**
+ * Title: SchemaFixRunner.java
+ *
+ * Description: One-time utility executed on application startup to fix common schema
+ * issues, specifically ensuring the primary key of the 'app_user' table is set
+ * to AUTO_INCREMENT and correcting its related foreign keys.
+ *
+ * @author Leo Y
+ * @version 1.0
+ */
 package com.example.demo.db;
 
 import lombok.extern.slf4j.Slf4j;
@@ -7,23 +17,68 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * A one-time  component designed to fix common database schema
+ * issues encountered when using JPA with certain database dilects, it 
+ * uses alot of spring boots code so check their doc to learn more 
+ * 
+ */
 @Slf4j
 @Component
 public class SchemaFixRunner implements CommandLineRunner {
 
+    /**
+     * Spring's utility for executing SQL queries and updates against the database.
+     */
     private final JdbcTemplate jdbc;
 
-    // change if your schema name isn't "registration"
+    /**
+     * The name of the database schema (defaulted to "fitpath").
+     */
     private static final String SCHEMA = "fitpath";
+    
+    /**
+     * The name of the child table (the one containing the foreign key).
+     */
     private static final String CHILD_TABLE = "confirmation_token";
+    
+    /**
+     * The name of the parent table (the one receiving the AUTO_INCREMENT fix).
+     */
     private static final String PARENT_TABLE = "app_user";
+    
+    /**
+     * The name of the column in the child table that references the parent table's primary key.
+     */
     private static final String CHILD_COL = "app_user_id";
+    
+    /**
+     * The desired name for the re-created foreign key constraint.
+     */
     private static final String NEW_FK_NAME = "fk_confirmation_token_app_user";
 
+    /**
+     * Constructs the SchemaFixRunner and injects the necessary {@link JdbcTemplate}.
+     *
+     * @param jdbc The Spring JDBC template.
+     */
     public SchemaFixRunner(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
     }
 
+    /**
+     * Executes the schema fix logic when the Spring Boot application starts up.
+     * <p>
+     * The execution involves:
+     * 1. Checking the primary key status to skip if already {@code AUTO_INCREMENT}.
+     * 2. Identifying and dropping any existing foreign key constraints on the child table.
+     * 3. Dropping any residual indexes left behind after the foreign key removal.
+     * 4. Modifying the parent table's primary key (`id`) to be {@code AUTO_INCREMENT}.
+     * 5. Recreating the foreign key constraint on the child table, ensuring data integrity.
+     * </p>
+     *
+     * @param args Command line arguments passed to the application.
+     */
     @Override
     public void run(String... args) {
         log.info(">>> Running one-time schema fix for {}.{}", SCHEMA, PARENT_TABLE);
@@ -61,52 +116,3 @@ public class SchemaFixRunner implements CommandLineRunner {
             for (String fk : fkNames) {
                 log.info("Dropping FK {} on {}.{}", fk, SCHEMA, CHILD_TABLE);
                 jdbc.execute("ALTER TABLE %s.%s DROP FOREIGN KEY `%s`"
-                    .formatted(SCHEMA, CHILD_TABLE, fk));
-            }
-
-            // 3) Drop leftover index(es) on app_user_id if they exist (Workbench often leaves one)
-            List<String> idxNames = jdbc.query(
-                "SHOW INDEX FROM %s.%s WHERE Column_name = '%s'"
-                    .formatted(SCHEMA, CHILD_TABLE, CHILD_COL),
-                (rs, i) -> rs.getString("Key_name")
-            );
-            for (String idx : idxNames) {
-                if (!"PRIMARY".equalsIgnoreCase(idx)) {
-                    log.info("Dropping index {} on {}.{}", idx, SCHEMA, CHILD_TABLE);
-                    jdbc.execute("DROP INDEX `%s` ON %s.%s".formatted(idx, SCHEMA, CHILD_TABLE));
-                }
-            }
-
-            // 4) Make parent PK auto-increment (with FK checks off just in case)
-            log.info("Altering {}.{} to make id AUTO_INCREMENT", SCHEMA, PARENT_TABLE);
-            jdbc.execute("SET FOREIGN_KEY_CHECKS = 0");
-            jdbc.execute("""
-                ALTER TABLE %s.%s
-                MODIFY COLUMN id BIGINT NOT NULL AUTO_INCREMENT
-            """.formatted(SCHEMA, PARENT_TABLE));
-            jdbc.execute("SET FOREIGN_KEY_CHECKS = 1");
-
-            // 5) Recreate FK with a clean, unique name (if child col exists)
-            Integer childColCount = jdbc.query(
-                "SHOW COLUMNS FROM %s.%s LIKE '%s'".formatted(SCHEMA, CHILD_TABLE, CHILD_COL),
-                (rs, i) -> 1
-            ).size();
-            if (childColCount > 0) {
-                log.info("Re-adding FK {} on {}.{}", NEW_FK_NAME, SCHEMA, CHILD_TABLE);
-                jdbc.execute("""
-                    ALTER TABLE %s.%s
-                    ADD CONSTRAINT `%s`
-                    FOREIGN KEY (`%s`) REFERENCES %s.%s(`id`)
-                    ON DELETE CASCADE
-                """.formatted(SCHEMA, CHILD_TABLE, NEW_FK_NAME, CHILD_COL, SCHEMA, PARENT_TABLE));
-            } else {
-                log.warn("Child column {}.{} not found; skipping FK recreate.", CHILD_TABLE, CHILD_COL);
-            }
-
-            log.info(">>> Schema fix complete. Remove or disable SchemaFixRunner now.");
-        } catch (Exception e) {
-            log.error("Schema fix failed", e);
-            // throw e; // uncomment if you want startup to fail on error
-        }
-    }
-}
