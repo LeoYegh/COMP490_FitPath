@@ -3,6 +3,15 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import TestField from "./TestField";
 
+/**
+ * 
+ * @returns {String|App.handleSubmit|Boolean}
+ * Feather Hoshizora
+ * 10/5/2025
+ * App (currently mostly temporary name)
+ * using testfield, provides a reusable template that allows users to input pertinent data and stores and displays it for testing purposes, can easily be
+ * used to send said data wherever needed
+ */
 function App() {
   // List of all submissions
   const [entries, setEntries] = useState([]);
