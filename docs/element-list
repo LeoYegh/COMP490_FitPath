@@ -1,0 +1,9 @@
+com.example.demo
+com.example.demo.appuser
+com.example.demo.calorie
+com.example.demo.db
+com.example.demo.email
+com.example.demo.registration
+com.example.demo.registration.token
+com.example.demo.security
+com.example.demo.security.config
