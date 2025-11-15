@@ -2,6 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/About.css';
 
+/**
+ * 
+ * @returns {String}
+ * @author Feather Hoshizora
+ * About page
+ * Lists names of collaborators on project
+ */
 function About() {
     return (
         <div className="about">
