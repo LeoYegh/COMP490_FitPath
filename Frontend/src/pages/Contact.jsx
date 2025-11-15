@@ -5,6 +5,7 @@ import '../styles/Contact.css';
  * 
  * @returns {String}Contact function
  * @author Feather Hoshizora
+ * Allows for sharing of feedback, intended to soon connect to contactUs page
  */
 function Contact() {
     return (
