@@ -38,7 +38,7 @@ public class CaloriePrompts {
     /**
      * Prompts the user to enter the date and the name of the food or drink item
      * to be logged.
-     * <p
+     * <p>
      *
      * @throws FileNotFoundException If file operations were involved and it doesnt find it .
      */

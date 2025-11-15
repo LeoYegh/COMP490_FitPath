@@ -84,7 +84,7 @@ public class SchemaFixRunner implements CommandLineRunner {
         log.info(">>> Running one-time schema fix for {}.{}", SCHEMA, PARENT_TABLE);
         try {
             // A) Already auto-increment? bail early
-            Boolean alreadyAuto = jdbc.query(
+            final Boolean alreadyAuto = jdbc.query(
                 "SHOW COLUMNS FROM " + SCHEMA + "." + PARENT_TABLE + " LIKE 'id'",
                 (rs, i) -> rs.getString("Extra") != null && rs.getString("Extra").toLowerCase().contains("auto_increment")
             ).stream().findFirst().orElse(false);
@@ -115,4 +115,14 @@ public class SchemaFixRunner implements CommandLineRunner {
             // 2) Drop FK(s) if present
             for (String fk : fkNames) {
                 log.info("Dropping FK {} on {}.{}", fk, SCHEMA, CHILD_TABLE);
-                jdbc.execute("ALTER TABLE %s.%s DROP FOREIGN KEY `%s`"
+                String sql = String.format(
+                    "ALTER TABLE `%s`.`%s` DROP FOREIGN KEY `%s`",
+                    SCHEMA, CHILD_TABLE, fk
+                );
+                jdbc.execute(sql);
+            }
+        } catch (Exception e) {
+            log.error("Error while executing schema fix for {}.{}", SCHEMA, PARENT_TABLE, e);
+        }
+    }
+}

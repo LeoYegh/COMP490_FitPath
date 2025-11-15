@@ -97,3 +97,5 @@ public class ConfirmationToken {
      */
     public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, AppUser appUser) {
         this.token = token;
+    }
+}
