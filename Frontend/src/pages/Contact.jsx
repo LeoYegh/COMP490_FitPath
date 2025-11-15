@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Contact.css';
-
+/**
+ * 
+ * @returns {String}Contact function
+ * @author Feather Hoshizora
+ */
 function Contact() {
     return (
         <div className="contact">
