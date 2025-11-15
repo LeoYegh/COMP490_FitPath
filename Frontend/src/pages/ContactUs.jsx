@@ -4,7 +4,7 @@ import emailjs from '@emailjs/browser';
 //should update this to accomadate multiple forms and templates later but as of right now unsure which email templates would be necessary
 /** 
  *
- * @returns {form@var;sendEmail|String} ContactUs
+ * @returns {JSX.Element} ContactUs
  * @author Feather Hoshizora
  * 11/10/2025
  * Connects to Email JS service to send emails back and forth from the app directly, 
