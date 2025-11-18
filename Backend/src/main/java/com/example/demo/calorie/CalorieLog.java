@@ -67,6 +67,8 @@ public class CalorieLog {
      */
     private int carbs;
 
+    public CalorieLog() {}
+
     /**
      * Retrieves the user associated with this calorie log.
      *
