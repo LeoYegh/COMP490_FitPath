@@ -1,6 +1,6 @@
 //I had the jsdoc stuff here for ages and couldn't figure out why it wouldn't work.
 import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
+//import emailjs from '@emailjs/browser';
 import '../styles/ContactUs.css';
 //should update this to accomadate multiple forms and templates later but as of right now unsure which email templates would be necessary
 /** 
@@ -16,7 +16,7 @@ export const ContactUs = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-// sort of placeholder atm
+    // sort of placeholder atm
     emailjs
       .sendForm('service_u3bnr7a', 'template_swquodl', form.current, {//contactUs form
         publicKey: 'UCgiIJzRHDSOmrJF7',//Feather's account
@@ -32,14 +32,14 @@ export const ContactUs = () => {
   };
 
   return (
-          
-    <form ref={form} onSubmit={sendEmail}>
-    <div className="contact">
-            <div className='headerContainer'>
-                <h1>Share feedback!</h1>
-            </div>
 
+    <form ref={form} onSubmit={sendEmail}>
+      <div className="contact">
+        <div className='headerContainer'>
+          <h1>Share feedback!</h1>
         </div>
+
+      </div>
       <label>Name</label>
       <input type="text" name="user_name" />
       <label>Email</label>
@@ -48,7 +48,7 @@ export const ContactUs = () => {
       <textarea name="message" />
       <input type="submit" value="Send" />
     </form>
-    
+
   );
 };
 export default ContactUs
