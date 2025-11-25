@@ -17,7 +17,7 @@ function Navbar() {
         <Link to='/signUp'>Sign Up</Link>
         <Link to='/login'>Login</Link>
         <Link to='/About'>About us</Link>
-        <Link to='/Contact'>Contact</Link>
+        <Link to='/ContactUs'>Contact Us</Link>
       </div>
     </div>
   );
