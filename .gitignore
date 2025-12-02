@@ -76,5 +76,7 @@ generated-test-sources/
 *.bak
 *.backup
 
+/src/main/resources/application-local.yml
+
 
 

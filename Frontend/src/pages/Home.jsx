@@ -28,12 +28,13 @@ function Home() {
 
                 <div>
 
-                    <Link to="/signUP">Start today</Link>
+
                     <h1>Start Your Fitnees Journey Today</h1>
                     <p>Track your calories, workouts, and progress effortlessly.<br />
                         Get personalized fitness advice and meal insights<br /> that help
                         you stay on track every day.
                     </p>
+                    <Link className='button' to="/signUP">Start today</Link>
                 </div>
 
             </div>

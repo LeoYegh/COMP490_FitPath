@@ -1,35 +1,8 @@
+spring:
+  profiles:
+    active: local
+
 server:
   error:
     include-message: always
     include-binding-errors: always
-
-spring:
-  datasource:
-    url: jdbc:mysql://fitpath.cg7ys4qcefrj.us-east-1.rds.amazonaws.com:3306/fitpath?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: admin
-    password: THISisaPASSWORD8
-    driver-class-name: com.mysql.cj.jdbc.Driver    
-#    url: jdbc:mysql://170.9.19.103:3307/490fitPath?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-#   username: admin
-#    password: 'ThisIsThePassword@3'
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update    
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
-        format_sql: true
-    show-sql: true
-
-  mail:
-      host: smtp.gmail.com
-      port: 587
-      username: leoyegh@gmail.com            
-      password: aclg lrsu owpu tdkh             # for Gmail, use a 16-char App Password
-      properties:
-        mail:
-          smtp:
-            auth: true
-            starttls:
-              enable: true
