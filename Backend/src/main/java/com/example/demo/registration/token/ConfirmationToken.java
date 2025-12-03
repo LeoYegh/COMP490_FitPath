@@ -41,18 +41,11 @@ public class ConfirmationToken {
     /**
      * Generator definition for the sequence used to generate primary key IDs.
      */
-    @SequenceGenerator(
-        name="confirmation_token_sequence",
-        sequenceName="confirmation_token_sequence",
-        allocationSize=1
-    )
+    @SequenceGenerator(name = "confirmation_token_sequence", sequenceName = "confirmation_token_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "confirmation_token_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "confirmation_token_sequence")
     private Long id;
-    
+
     /**
      * The unique token string used for confirmation. Cannot be null.
      */
@@ -70,9 +63,10 @@ public class ConfirmationToken {
      */
     @Column(nullable = false)
     private LocalDateTime expiresAt;
-    
+
     /**
-     * The date and time when the token was successfully used to confirm the account.
+     * The date and time when the token was successfully used to confirm the
+     * account.
      * This field is null until confirmation occurs.
      */
     private LocalDateTime confirmedAt;
@@ -82,20 +76,25 @@ public class ConfirmationToken {
      * Defines a Many-to-One relationship and is a required field.
      */
     @ManyToOne
-    @JoinColumn(nullable = false,
-                name = "app_user_id")
+    @JoinColumn(nullable = false, name = "app_user_id")
     private AppUser appUser;
-    
+
     /**
      * Constructs a new ConfirmationToken instance.
      * The time is initially set to {@code null}.
      *
-     * @param token The unique token string.
+     * @param token     The unique token string.
      * @param createdAt The token creation time.
      * @param expiresAt The token expiration time.
-     * @param appUser The user associated with this token.
+     * @param appUser   The user associated with this token.
      */
-    public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, AppUser appUser) {
+    public ConfirmationToken(String token,
+            LocalDateTime createdAt,
+            LocalDateTime expiresAt,
+            AppUser appUser) {
         this.token = token;
+        this.createdAt = createdAt;
+        this.expiresAt = expiresAt;
+        this.appUser = appUser; // 👈 THIS was missing
     }
 }
