@@ -25,7 +25,8 @@ import gymImage from "../assets/gym.jpeg";
  */
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:8080";
-const ENDPOINT = "/api/v1/registration"; // Change to our backend route
+const ENDPOINT = "/api/v1/registration";
+
 
 export default function SignUp() {
     const [form, setForm] = useState({
@@ -33,9 +34,8 @@ export default function SignUp() {
         lastName: "",
         email: "",
         password: "",
-        appUserRole: "USER",
     });
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState(null);
     const [error, setError] = useState(null);
 
@@ -61,32 +61,56 @@ export default function SignUp() {
 
         try {
             setIsLoading(true);
+
+            const payloadToSend = {
+                firstName: form.firstName,
+                lastName: form.lastName,
+                email: form.email,
+                password: form.password,
+            };
+
+            console.log("Sending payload:", payloadToSend);
+
             const res = await fetch(`${API_BASE}${ENDPOINT}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
+                body: JSON.stringify(payloadToSend),
             });
 
             const ct = res.headers.get("content-type") || "";
-            const payload = ct.includes("application/json") ? await res.json() : await res.text();
+            const payload = ct.includes("application/json")
+                ? await res.json()
+                : await res.text();
 
             if (!res.ok) {
-                const msg = typeof payload === "string" ? payload : payload?.message || JSON.stringify(payload);
+                const msg =
+                    typeof payload === "string"
+                        ? payload
+                        : payload?.message || JSON.stringify(payload);
                 throw new Error(msg || `Request failed with status ${res.status}`);
             }
 
-            const successMsg = typeof payload === "string" && payload.trim().length > 0
-                ? `Registered! Token: ${payload}`
-                : "Registered! Check your email to confirm.";
+            const successMsg =
+                typeof payload === "string" && payload.trim().length > 0
+                    ? `Registered! Token: ${payload}`
+                    : "Registered! Check your email to confirm.";
 
             setMessage(successMsg);
-            setForm({ firstName: "", lastName: "", email: "", password: "", appUserRole: "USER" });
+            setForm({
+                firstName: "",
+                lastName: "",
+                email: "",
+                password: "",
+            });
+
         } catch (err) {
+            console.error("Registration error:", err);
             setError(err.message || "Something went wrong.");
         } finally {
             setIsLoading(false);
         }
     }
+
     return (
         <div className="container">
             <div className="form-card">
@@ -95,33 +119,52 @@ export default function SignUp() {
                     <div className="name-group">
                         <div>
                             <label>First Name</label>
-                            <input type="text" value={form.firstName} onChange={(e) => updateField("firstName", e.target.value)} required />
+                            <input
+                                type="text"
+                                value={form.firstName}
+                                onChange={(e) => updateField("firstName", e.target.value)}
+                                required
+                            />
                         </div>
                         <div>
                             <label>Last Name</label>
-                            <input type="text" value={form.lastName} onChange={(e) => updateField("lastName", e.target.value)} required />
+                            <input
+                                type="text"
+                                value={form.lastName}
+                                onChange={(e) => updateField("lastName", e.target.value)}
+                                required
+                            />
                         </div>
                     </div>
 
                     <label>Email</label>
-                    <input type="email" value={form.email} onChange={(e) => updateField("email", e.target.value)} required />
+                    <input
+                        type="email"
+                        value={form.email}
+                        onChange={(e) => updateField("email", e.target.value)}
+                        required
+                    />
 
                     <label>Password</label>
-                    <input type="password" value={form.password} onChange={(e) => updateField("password", e.target.value)} required />
+                    <input
+                        type="password"
+                        value={form.password}
+                        onChange={(e) => updateField("password", e.target.value)}
+                        required
+                    />
 
-                    <label>Role</label>
-                    <select value={form.appUserRole} onChange={(e) => updateField("appUserRole", e.target.value)}>
-                        <option value="USER">USER</option>
-                        <option value="ADMIN">ADMIN</option>
-                    </select>
-
-                    <button type="submit" disabled={isLoading}>{isLoading ? "Saving..." : "Register"}</button>
+                    <button type="submit" disabled={isLoading}>
+                        {isLoading ? "Saving..." : "Register"}
+                    </button>
                 </form>
 
                 {message && <div className="message success">{message}</div>}
                 {error && <div className="message error">{error}</div>}
             </div>
-            <div className="background-image" style={{ backgroundImage: `url(${gymImage})` }}></div>
+            <div
+                className="background-image"
+                style={{ backgroundImage: `url(${gymImage})` }}
+            ></div>
         </div>
-    )
+    );
 }

@@ -27,22 +27,26 @@ import org.springframework.transaction.annotation.Transactional;
  * This repository is set to be read-only by default for performance and safety.
  */
 @Repository
-@Transactional(readOnly=true)
-public interface UserRepository extends JpaRepository<AppUser, Long>{
-    
+
+public interface UserRepository extends JpaRepository<AppUser, Long> {
+
     /**
      * Finds a user by their unique email address.
      *
      * @param email The email address of the user to find.
-     * @return An {@link Optional} containing the {@link AppUser} if found, or an empty Optional otherwise.
+     * @return An {@link Optional} containing the {@link AppUser} if found, or an
+     *         empty Optional otherwise.
      */
     Optional<AppUser> findByEmail(String email);
 
     /**
-     * Updates the {@code enabled} status of an {@link AppUser} to {@code TRUE} based on their email.
+     * Updates the {@code enabled} status of an {@link AppUser} to {@code TRUE}
+     * based on their email.
      * <p>
-     * This method is transactional and uses a custom JPQL query to perform the update.
-     * {@code @Modifying} is required to execute a modifying query like UPDATE or DELETE.
+     * This method is transactional and uses a custom JPQL query to perform the
+     * update.
+     * {@code @Modifying} is required to execute a modifying query like UPDATE or
+     * DELETE.
      * </p>
      *
      * @param email The email of the user to enable.
