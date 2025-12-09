@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "api/v1/registration")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
 public class RegistrationController {
 
     /**
