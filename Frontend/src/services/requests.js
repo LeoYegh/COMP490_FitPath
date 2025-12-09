@@ -4,12 +4,15 @@
     function MyComponent() {
         const [data, setData] = useState([]);
 
+        const API_BASE = "http://FitPath.us-east-1.elasticbeanstalk.com";
+
         useEffect(() => {
-            fetch('http://localhost:8080/api/mydata') // Replace with your Spring Boot API URL
-                .then(response => response.json())
-                .then(data => setData(data))
-                .catch(error => console.error('Error fetching data:', error));
+        fetch(`${API_BASE}/api/mydata`)
+            .then(res => res.json())
+            .then(setData)
+            .catch(err => console.error("Error fetching data:", err));
         }, []);
+
 
         return (
             <div>
