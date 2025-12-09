@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
 import SignUp from "./pages/SignUp"
+import Profile from "./pages/Profile";
 
 /**
  * Component Name: App
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/signUp" exact element={<SignUp />} />
                 <Route path="/About" exact element={<About />} />
                 <Route path="/ContactUs" exact element={<ContactUs />} />
+                <Route path="/profile" exact element={<Profile />} />
             </Routes>
         </Router>
 
