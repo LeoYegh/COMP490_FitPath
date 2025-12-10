@@ -7,11 +7,9 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
 import SignUp from "./pages/SignUp";
-<<<<<<< HEAD
 import Dashboard from "./pages/Dashboard"
-=======
 import Dashboard from "./pages/Dashboard";
->>>>>>> 1473bad657c4e94d662d9cc2638488f939fb3ed3
+
 
 /**
  * Component Name: App
@@ -68,11 +66,8 @@ function App() {
                 <Route path="/signUp" exact element={<SignUp />} />
                 <Route path="/About" exact element={<About />} />
                 <Route path="/ContactUs" exact element={<ContactUs />} />
-<<<<<<< HEAD
                 <Route path="/Dashboard" exact element={<Dashboard />} />
-=======
                 <Route path="/profile" exact element={<Dashboard />} />
->>>>>>> 1473bad657c4e94d662d9cc2638488f939fb3ed3
             </Routes>
         </Router>
 
