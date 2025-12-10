@@ -1,0 +1,345 @@
+/* Dashboard.css */
+:root {
+  --bg-dark: #1f2937; /* Dark background */
+  --card-white: #ffffff;
+  --card-dark: #1e293b; /* Darker card */
+  --text-primary: #111827;
+  --text-secondary: #9ca3af;
+  --text-white: #ffffff;
+  --accent-orange: #f97316;
+  --accent-blue: #38bdf8;
+  --accent-green: #4ade80;
+  --border-radius: 24px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-dark);
+}
+
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  background-color: var(--bg-dark);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.dashboard-wrapper {
+  display: flex;
+  gap: 30px;
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+/* --- Header --- */
+.header-section {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.sub-header {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* --- Grid Layouts --- */
+.main-content {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 2 parts width, 1 part width */
+  gap: 20px;
+}
+
+/* --- Cards --- */
+.card {
+  background: var(--card-white);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.card.dark {
+  background: var(--card-dark);
+  color: white;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+}
+
+/* --- Daily Overview Specifics --- */
+.overview-content {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.circular-progress {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.circular-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.percent-text {
+  font-size: 1.8rem;
+  font-weight: 900;
+  display: block;
+}
+
+.goal-label {
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.stats-details {
+  flex: 1;
+}
+
+.kcal-count {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.kcal-total {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Macro Bars */
+.macro-item {
+  margin-bottom: 12px;
+}
+
+.macro-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.progress-track {
+  height: 16px;
+  background: #f3f4f6;
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+  flex: 1;
+}
+
+.progress-fill {
+  height: 100%;
+}
+
+.macro-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.percent-badge {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Colors */
+.orange { color: var(--accent-orange); }
+.bg-orange { background-color: var(--accent-orange); }
+.bg-orange-light { background-color: #fff7ed; color: var(--accent-orange); }
+
+.blue { color: var(--accent-blue); }
+.bg-blue { background-color: var(--accent-blue); }
+.bg-blue-light { background-color: #f0f9ff; color: var(--accent-blue); }
+
+.green { color: var(--accent-green); }
+.bg-green { background-color: var(--accent-green); }
+.bg-green-light { background-color: #f0fdf4; color: var(--accent-green); }
+
+/* --- Sleep Tracker --- */
+.sleep-stats {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 20px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.stat-label { color: var(--text-secondary); text-transform: uppercase; font-size: 0.8rem; }
+.stat-value { font-weight: 700; text-align: right; }
+.goal-badge { background: #fef08a; padding: 2px 4px; border-radius: 4px; font-weight: bold; font-size: 0.7rem; }
+
+.chart-container {
+  background: var(--bg-dark);
+  border-radius: 12px;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+  position: relative;
+}
+
+.chart-days {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: bold;
+}
+
+/* --- Food Log --- */
+.food-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.food-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.food-icon {
+  width: 40px;
+  height: 40px;
+  background: #f3f4f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.add-btn {
+  width: 100%;
+  padding: 12px;
+  border: 2px dashed #e5e7eb;
+  background: none;
+  border-radius: 12px;
+  color: #9ca3af;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.add-btn:hover { border-color: var(--accent-orange); color: var(--accent-orange); }
+
+/* --- Workouts --- */
+.workout-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.workout-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.workout-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.workout-item {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.workout-item strong {
+  color: white;
+  margin-right: 8px;
+}
+
+/* --- Right Sidebar (Recommendations) --- */
+.sidebar {
+  flex: 1;
+  min-width: 300px;
+  background: #f8fafc;
+  border-radius: var(--border-radius);
+  padding: 24px;
+}
+
+.rec-card {
+  margin-bottom: 24px;
+}
+
+.rec-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.rec-box {
+  background: white;
+  border: 2px solid #334155; /* Dark thick border */
+  border-radius: 16px;
+  padding: 16px;
+  /* The "Neo-brutalist" shadow */
+  box-shadow: 4px 4px 0px 0px #1e293b; 
+}
+
+.rec-text {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .dashboard-wrapper { flex-direction: column; }
+  .stats-grid { grid-template-columns: 1fr; }
+}

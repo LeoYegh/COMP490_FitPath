@@ -1,11 +1,10 @@
 import logo from "../assets/FitPalLogo.jpeg";
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 
 import '../styles/NavBar.css';
 
-
-function Navbar() {
+function Navbar({ isLoggedIn }) {
 
   return (
     <div className="navbar">
@@ -18,8 +17,15 @@ function Navbar() {
         <Link to='/login'>Login</Link>
         <Link to='/About'>About us</Link>
         <Link to='/ContactUs'>Contact Us</Link>
+
+
+        {isLoggedIn
+          ? <Link to='/Dashboard'>Dashboard</Link>
+          : null
+        }
       </div>
     </div>
   );
 }
-export default Navbar
+
+export default Navbar;
