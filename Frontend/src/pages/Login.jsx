@@ -6,40 +6,37 @@ import "../styles/Login.css";
 
 const API_BASE = "http://localhost:8080/api/v1/auth";
 
-export default function Login() {
+export default function Login({ setIsLoggedIn }) {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState({ type: "", text: "" });
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage({ type: "", text: "" });
+    setMessage("");
     setIsLoading(true);
 
     try {
-      const res = await axios.post(`${API_BASE}/login`, { email, password });
+      // Attempt login
+      await axios.post(`${API_BASE}/login`, { email, password });
 
+      // Save email to localStorage if needed later
       localStorage.setItem("currentUserEmail", email);
 
-      window.dispatchEvent(new Event("storage"));
+      // Update App state so Navbar shows Dashboard
+      setIsLoggedIn(true);
 
-
+      // Redirect to dashboard
       navigate("/Dashboard");
 
     } catch (err) {
-      let text = "Login failed. Please try again.";
-
-      if (err.response?.status === 401) {
-        text = "Invalid email or password.";
-      }
-
-      setMessage({ type: "error", text });
-    } finally {
-      setIsLoading(false);
+      setMessage("Invalid email or password.");
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -48,9 +45,8 @@ export default function Login() {
         <h1>Login To Your Account</h1>
 
         <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
+          <label>Email</label>
           <input
-            id="email"
             type="email"
             placeholder="Enter your email"
             value={email}
@@ -58,9 +54,8 @@ export default function Login() {
             required
           />
 
-          <label htmlFor="password">Password</label>
+          <label>Password</label>
           <input
-            id="password"
             type="password"
             placeholder="Enter your password"
             value={password}
@@ -73,12 +68,9 @@ export default function Login() {
           </button>
         </form>
 
-        {message.text && (
-          <div className={`message ${message.type}`}>
-            {message.text}
-          </div>
-        )}
+        {message && <div className="message error">{message}</div>}
       </div>
+
       <div
         className="background-image"
         style={{ backgroundImage: `url(${CsunGymImage})` }}

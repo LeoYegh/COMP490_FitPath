@@ -37,7 +37,6 @@ function App() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
     useEffect(() => {
         const savedEmail = localStorage.getItem("currentUserEmail");
         if (savedEmail) {
@@ -46,22 +45,12 @@ function App() {
     }, []);
 
 
-    useEffect(() => {
-        const handleStorage = () => {
-            const savedEmail = localStorage.getItem("currentUserEmail");
-            setIsLoggedIn(!!savedEmail);
-        };
-        window.addEventListener("storage", handleStorage);
-        return () => window.removeEventListener("storage", handleStorage);
-    }, []);
-
-
     return <div className="App">
         <Router>
-            <Navbar />
+            <Navbar isLoggedIn={isLoggedIn} />
             <Routes>
                 <Route path="/" exact element={<Home />} />
-                <Route path="/login" exact element={<Login />} />
+                <Route path="/login" exact element={<Login setIsLoggedIn={setIsLoggedIn} />} />
                 <Route path="/signUp" exact element={<SignUp />} />
                 <Route path="/About" exact element={<About />} />
                 <Route path="/ContactUs" exact element={<ContactUs />} />
