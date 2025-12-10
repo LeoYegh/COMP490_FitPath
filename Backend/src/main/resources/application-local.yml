@@ -4,9 +4,9 @@ spring:
       on-profile: local
 
   datasource:
-    url: jdbc:mysql://localhost:3306/fitpath?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: root            # <-- your local MySQL user
-    password: "@Scrum380"     # <-- your local MySQL password
+    url: jdbc:mysql://fitpath.cg7ys4qcefrj.us-east-1.rds.amazonaws.com:3306/fitpath?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: admin            # <-- your local MySQL user
+    password: "THISisaPASSWORD8"     # <-- your local MySQL password
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -20,8 +20,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: YOUR_GMAIL_ADDRESS_HERE
-    password: "YOUR_APP_PASSWORD_HERE"
+    username: leoyegh@gmail.com
+    password: "aclg lrsu owpu tdkh"
     properties:
       mail:
         smtp:

@@ -8,6 +8,8 @@ import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard"
+import Dashboard from "./pages/Dashboard";
+
 
 /**
  * Component Name: App
