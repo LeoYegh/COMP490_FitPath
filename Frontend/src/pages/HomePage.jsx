@@ -1,8 +1,9 @@
 import React from "react";
 import "./HomePage.css";
-import TestField from "./TestField";
+
 /**
  * 
+ * @author Feather
  * @type type
  */
 
@@ -196,4 +197,5 @@ export default function FitnessDashboard() {
       </section>
     </div>
   );
+
 }
