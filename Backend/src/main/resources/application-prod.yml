@@ -29,9 +29,9 @@ spring:
           starttls:
             enable: true
   
-  server:
-    port: 5000
+server:
+    port: ${SERVER_PORT:5000}
 
-  error:
+error:
     include-message: always
     include-binding-errors: always

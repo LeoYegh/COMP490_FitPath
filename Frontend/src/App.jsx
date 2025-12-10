@@ -5,7 +5,8 @@ import './App.css'
 import Login from "./pages/Login";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
-import SignUp from "./pages/SignUp"
+import SignUp from "./pages/SignUp";
+import Dashboard from "./pages/Dashboard"
 
 /**
  * Component Name: App
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/signUp" exact element={<SignUp />} />
                 <Route path="/About" exact element={<About />} />
                 <Route path="/ContactUs" exact element={<ContactUs />} />
+                <Route path="/Dashboard" exact element={<Dashboard />} />
             </Routes>
         </Router>
 
