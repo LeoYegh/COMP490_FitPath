@@ -67,11 +67,10 @@ function App() {
                 <Route path="/About" exact element={<About />} />
                 <Route path="/ContactUs" exact element={<ContactUs />} />
                 <Route path="/Dashboard" exact element={<Dashboard />} />
-                <Route path="/profile" exact element={<Dashboard />} />
-            </Routes>
-        </Router>
+            </Routes >
+        </Router >
 
-    </div>;
+    </div >;
 
 }
 

@@ -73,7 +73,6 @@ export default function SignUp() {
         password: form.password,
       };
 
-      console.log("Sending payload:", payloadToSend);
 
       const res = await fetch(`${API_BASE}${ENDPOINT}`, {
         method: "POST",
