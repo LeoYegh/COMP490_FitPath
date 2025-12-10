@@ -1,0 +1,838 @@
+<<<<<<< HEAD
+/* --- Global Styles --- */
+
+body {
+    background-color: #0d121c; /* Dark Blue/Black Background */
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-container {
+    padding: 30px;
+}
+
+.dashboard-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Header & Layout --- */
+.header-section {
+    margin-bottom: 25px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #f97316; /* Orange brand color */
+}
+
+.sub-header {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.grid-span-2 {
+    grid-column: span 2;
+=======
+/* Dashboard.css */
+:root {
+  --bg-dark: #1f2937; /* Dark background */
+  --card-white: #ffffff;
+  --card-dark: #1e293b; /* Darker card */
+  --text-primary: #111827;
+  --text-secondary: #9ca3af;
+  --text-white: #ffffff;
+  --accent-orange: #f97316;
+  --accent-blue: #38bdf8;
+  --accent-green: #4ade80;
+  --border-radius: 24px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-dark);
+}
+
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  background-color: var(--bg-dark);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.dashboard-wrapper {
+  display: flex;
+  gap: 30px;
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+/* --- Header --- */
+.header-section {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.sub-header {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* --- Grid Layouts --- */
+.main-content {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 2 parts width, 1 part width */
+  gap: 20px;
+>>>>>>> 02be5ccec847a2d98d239204f29570d0fb81da0c
+}
+
+/* --- Cards --- */
+.card {
+<<<<<<< HEAD
+    background-color: #1f2937; /* Dark Gray Card Background */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid #374151; /* Subtle border */
+    height: fit-content;
+}
+
+.card-relative {
+    position: relative;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #e5e7eb;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.title-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* --- Daily Overview --- */
+
+.overview-stats-text {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    font-weight: normal;
+    text-align: right;
+}
+
+.kcal-header-spacing {
+    margin-bottom: 15px;
+}
+
+.kcal-count {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    margin-right: 5px;
+}
+
+.kcal-total {
+    font-size: 1rem;
+    color: #9ca3af;
+    font-weight: 500;
+}
+
+.kcal-burned-display {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #10b981; /* Green for calories burned */
+    margin-bottom: 10px;
+}
+
+.calorie-net-display {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #f97316; /* Orange for net */
+    border-top: 1px solid #374151;
+    padding-top: 10px;
+}
+
+.stats-note-text {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 10px;
+}
+
+/* --- Macro Bars --- */
+.macro-item {
+    margin-bottom: 12px;
+}
+
+.macro-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.macro-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress-track {
+    flex-grow: 1;
+    height: 8px;
+    background-color: #374151;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out;
+}
+
+.percent-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Colors for Macro Bars */
+.orange { color: #f97316; }
+.bg-orange { background-color: #f97316; }
+.bg-orange-light { background-color: #443c2c; color: #f97316; }
+
+.blue { color: #60a5fa; }
+.bg-blue { background-color: #60a5fa; }
+.bg-blue-light { background-color: #313f50; color: #60a5fa; }
+
+.green { color: #4ade80; }
+.bg-green { background-color: #4ade80; }
+.bg-green-light { background-color: #344841; color: #4ade80; }
+
+/* --- Sleep Tracker --- */
+.sleep-header-flex {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.sleep-last-night-text {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.icon-gray {
+    color: #9ca3af;
+}
+
+.icon-orange {
+    color: #f97316;
+}
+
+.sleep-stats {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-weight: 700;
+    color: white;
+}
+
+.goal-badge {
+    background-color: #374151;
+    color: #60a5fa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.sleep-input {
+    background: none;
+    border: 1px solid #374151;
+    border-radius: 4px;
+    color: white;
+    width: 50px;
+    padding: 4px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.sleep-log-btn {
+    background-color: #10b981;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: none;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.sleep-log-btn:hover {
+    background-color: #059669;
+}
+
+.save-message-flex {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+    color: #4ade80;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* Chart */
+.chart-margin-top {
+    margin-top: 15px;
+}
+
+.chart-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.chart-days {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #9ca3af;
+    margin-top: 5px;
+}
+
+/* --- Food Log & Workout Log --- */
+
+.log-empty-text {
+    color: #6b7280;
+    font-size: 0.8rem;
+    font-style: italic;
+    padding: 10px;
+}
+
+.food-list, .workout-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 200px; /* Limit height for scrolling */
+    overflow-y: auto;
+    padding-right: 5px; /* Space for scrollbar */
+    margin-bottom: 15px;
+}
+
+/* Custom Scrollbar for dark theme */
+.food-list::-webkit-scrollbar, .workout-list::-webkit-scrollbar {
+    width: 6px;
+}
+.food-list::-webkit-scrollbar-track, .workout-list::-webkit-scrollbar-track {
+    background: #374151;
+    border-radius: 10px;
+}
+.food-list::-webkit-scrollbar-thumb, .workout-list::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 10px;
+}
+
+.food-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #374151;
+}
+
+.food-item-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.food-icon {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.food-item-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.food-item-cal {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #9ca3af;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+    line-height: 0;
+    transition: opacity 0.2s;
+}
+
+.remove-btn:hover {
+    opacity: 0.7;
+}
+
+/* Add Food/Workout Button */
+.add-btn {
+    background-color: #2563eb; /* Default blue for food */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.add-btn:hover {
+    background-color: #1e40af;
+}
+
+.workout-log-btn {
+    background-color: #f97316 !important; /* Overwrite for workout button */
+}
+
+.workout-log-btn:hover {
+    background-color: #ea580c !important;
+}
+
+
+/* Pop-up Menus (Food & Workout) */
+.add-menu-popup {
+    position: absolute;
+    bottom: 50px;
+    left: 10px;
+    right: 10px;
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.add-menu-header {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-bottom: 8px;
+}
+
+.add-menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.add-menu-item-btn {
+    text-align: left;
+    padding: 8px;
+    border-radius: 6px;
+    background-color: #374151;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.add-menu-item-btn:hover {
+    background-color: #4b5563;
+}
+
+.add-menu-cal {
+    font-size: 0.7rem;
+    color: #9ca3af;
+}
+
+.add-menu-cal-orange {
+    font-size: 0.7rem;
+    color: #f97316;
+}
+
+
+/* --- Sidebar (Recommendations) --- */
+
+.sidebar {
+    height: fit-content;
+}
+
+.rec-card {
+    background-color: #1f2937;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #374151;
+    margin-bottom: 15px;
+}
+
+.rec-card h4 {
+    font-size: 0.9rem;
+    color: #f97316;
+    margin-top: 0;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.rec-box {
+    background-color: #374151;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.rec-text {
+    font-size: 0.85rem;
+    color: #e5e7eb;
+    margin: 0;
+    line-height: 1.4;
+=======
+  background: var(--card-white);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.card.dark {
+  background: var(--card-dark);
+  color: white;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+}
+
+/* --- Daily Overview Specifics --- */
+.overview-content {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.circular-progress {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.circular-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.percent-text {
+  font-size: 1.8rem;
+  font-weight: 900;
+  display: block;
+}
+
+.goal-label {
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.stats-details {
+  flex: 1;
+}
+
+.kcal-count {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.kcal-total {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Macro Bars */
+.macro-item {
+  margin-bottom: 12px;
+}
+
+.macro-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.progress-track {
+  height: 16px;
+  background: #f3f4f6;
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+  flex: 1;
+}
+
+.progress-fill {
+  height: 100%;
+}
+
+.macro-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.percent-badge {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Colors */
+.orange { color: var(--accent-orange); }
+.bg-orange { background-color: var(--accent-orange); }
+.bg-orange-light { background-color: #fff7ed; color: var(--accent-orange); }
+
+.blue { color: var(--accent-blue); }
+.bg-blue { background-color: var(--accent-blue); }
+.bg-blue-light { background-color: #f0f9ff; color: var(--accent-blue); }
+
+.green { color: var(--accent-green); }
+.bg-green { background-color: var(--accent-green); }
+.bg-green-light { background-color: #f0fdf4; color: var(--accent-green); }
+
+/* --- Sleep Tracker --- */
+.sleep-stats {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 20px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.stat-label { color: var(--text-secondary); text-transform: uppercase; font-size: 0.8rem; }
+.stat-value { font-weight: 700; text-align: right; }
+.goal-badge { background: #fef08a; padding: 2px 4px; border-radius: 4px; font-weight: bold; font-size: 0.7rem; }
+
+.chart-container {
+  background: var(--bg-dark);
+  border-radius: 12px;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+  position: relative;
+}
+
+.chart-days {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: bold;
+}
+
+/* --- Food Log --- */
+.food-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.food-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.food-icon {
+  width: 40px;
+  height: 40px;
+  background: #f3f4f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.add-btn {
+  width: 100%;
+  padding: 12px;
+  border: 2px dashed #e5e7eb;
+  background: none;
+  border-radius: 12px;
+  color: #9ca3af;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.add-btn:hover { border-color: var(--accent-orange); color: var(--accent-orange); }
+
+/* --- Workouts --- */
+.workout-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.workout-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.workout-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.workout-item {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.workout-item strong {
+  color: white;
+  margin-right: 8px;
+}
+
+/* --- Right Sidebar (Recommendations) --- */
+.sidebar {
+  flex: 1;
+  min-width: 300px;
+  background: #f8fafc;
+  border-radius: var(--border-radius);
+  padding: 24px;
+}
+
+.rec-card {
+  margin-bottom: 24px;
+}
+
+.rec-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.rec-box {
+  background: white;
+  border: 2px solid #334155; /* Dark thick border */
+  border-radius: 16px;
+  padding: 16px;
+  /* The "Neo-brutalist" shadow */
+  box-shadow: 4px 4px 0px 0px #1e293b; 
+}
+
+.rec-text {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .dashboard-wrapper { flex-direction: column; }
+  .stats-grid { grid-template-columns: 1fr; }
+>>>>>>> 02be5ccec847a2d98d239204f29570d0fb81da0c
+}
