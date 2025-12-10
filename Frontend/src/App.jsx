@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -5,8 +6,8 @@ import './App.css'
 import Login from "./pages/Login";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
-import SignUp from "./pages/SignUp"
-import Profile from "./pages/Profile";
+import SignUp from "./pages/SignUp";
+import Dashboard from "./pages/Dashboard";
 
 /**
  * Component Name: App
@@ -32,6 +33,28 @@ import Profile from "./pages/Profile";
 
 function App() {
 
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
+    useEffect(() => {
+        const savedEmail = localStorage.getItem("currentUserEmail");
+        if (savedEmail) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
+
+    useEffect(() => {
+        const handleStorage = () => {
+            const savedEmail = localStorage.getItem("currentUserEmail");
+            setIsLoggedIn(!!savedEmail);
+        };
+        window.addEventListener("storage", handleStorage);
+        return () => window.removeEventListener("storage", handleStorage);
+    }, []);
+
+
     return <div className="App">
         <Router>
             <Navbar />
@@ -41,7 +64,7 @@ function App() {
                 <Route path="/signUp" exact element={<SignUp />} />
                 <Route path="/About" exact element={<About />} />
                 <Route path="/ContactUs" exact element={<ContactUs />} />
-                <Route path="/profile" exact element={<Profile />} />
+                <Route path="/profile" exact element={<Dashboard />} />
             </Routes>
         </Router>
 
