@@ -1,9 +1,11 @@
+import CsunGymImage from "../assets/CsunGym.jpg";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 
 const API_BASE = "http://localhost:8080/api/v1/auth";
+
 export default function Login() {
   const navigate = useNavigate();
 
@@ -18,28 +20,19 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      console.log("Sending login payload:", { email, password });
+      const res = await axios.post(`${API_BASE}/login`, { email, password });
 
-      const res = await axios.post(`${API_BASE}/login`, {
-        email,
-        password,
-      });
-
-      console.log("Login success:", res.data);
-
-      // store email or token if you want
       localStorage.setItem("currentUserEmail", email);
 
-      setMessage({ type: "success", text: "Logged in successfully!" });
+      window.dispatchEvent(new Event("storage"));
 
-      navigate("/profile");
+
+      navigate("/Dashboard");
+
     } catch (err) {
-      console.error("Login error:", err);
-
-      const status = err.response?.status;
       let text = "Login failed. Please try again.";
 
-      if (status === 401) {
+      if (err.response?.status === 401) {
         text = "Invalid email or password.";
       }
 
@@ -51,7 +44,6 @@ export default function Login() {
 
   return (
     <div className="container">
-
       <div className="form-card">
         <h1>Login To Your Account</h1>
 
@@ -89,10 +81,8 @@ export default function Login() {
       </div>
       <div
         className="background-image"
-        style={{}}
+        style={{ backgroundImage: `url(${CsunGymImage})` }}
       ></div>
     </div>
   );
 }
-
-
