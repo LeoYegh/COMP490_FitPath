@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 
-const API_BASE = "http://localhost:8080/api/v1/auth";
+const API_BASE = "http://localhost:5000/api/v1/auth";
 
 export default function Login({ setIsLoggedIn }) {
   const navigate = useNavigate();

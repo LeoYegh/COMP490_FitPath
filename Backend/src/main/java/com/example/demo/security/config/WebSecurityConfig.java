@@ -60,17 +60,27 @@ public class WebSecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        // TEMP: allow EVERYTHING from everywhere to make sure CORS is not the blocker
         config.setAllowedOrigins(List.of(
+            // Local dev
             "http://localhost:5173",
-            "http://fitpath-website.s3-website-us-east-1.amazonaws.com"
+            "http://localhost:5000",
+
+            // Your S3 static site
+            "http://fitpath-website.s3-website-us-east-1.amazonaws.com",
+            "https://fitpath-website.s3-website-us-east-1.amazonaws.com",
+
+            // NEW EB environment URL
+            "http://FitPath-backend-env.eba-cbbmpmiu.us-east-1.elasticbeanstalk.com",
+            "https://FitPath-backend-env.eba-cbbmpmiu.us-east-1.elasticbeanstalk.com"
         ));
+
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
+
         return source;
     }
 }
