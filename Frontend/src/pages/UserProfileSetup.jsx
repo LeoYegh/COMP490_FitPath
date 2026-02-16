@@ -8,8 +8,8 @@ const DEFAULT_GOALS = {
     age: 30,
     height: 175, // cm
     weight: 70, // kg
-    calorieGoal: 2500,
-    proteinGoal: 200,
+    calorieGoal: 2000,
+    proteinGoal: 140,
     carbsGoal: 300,
     fatGoal: 80,
     sleepGoal: 8,
