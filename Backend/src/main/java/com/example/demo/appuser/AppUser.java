@@ -71,13 +71,13 @@ public class AppUser implements UserDetails {
     private Boolean locked = false;
     
     /**
-     * Flag indicating if the user account is enabled (e.g., confirmed or active). Defaults to {@code false}.
+     * Flag indicating if the user account is enabled (e.g., confirmed or active). Defaults to {@code true}
+     * so email confirmation is not required for login.
      */
-    private Boolean enabled = false;
+    private Boolean enabled = true;
 
     /**
      * Constructs a new AppUser with essential details.
-     * The {@code locked} and {@code enabled} flags default to {@code false}.
      *
      * @param firstName the user's first name
      * @param lastName the user's last name
@@ -163,12 +163,12 @@ public class AppUser implements UserDetails {
     }
     
     /**
-     * Indicates whether the user is enabled or disabled.
+     * Indicates whether the user can authenticate.
      *
-     * @return {@code true} if the user is enabled, {@code false} otherwise.
+     * @return {@code true} to allow login without email confirmation.
      */
-    @Override 
-    public boolean isEnabled() { 
-        return Boolean.TRUE.equals(enabled); 
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

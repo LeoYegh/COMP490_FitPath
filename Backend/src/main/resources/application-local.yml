@@ -4,9 +4,9 @@ spring:
       on-profile: local
 
   datasource:
-    url: jdbc:mysql://fitpath.cg7ys4qcefrj.us-east-1.rds.amazonaws.com:3306/fitpath?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: admin            # <-- your local MySQL user
-    password: "THISisaPASSWORD8"     # <-- your local MySQL password
+    url:  jdbc:mysql://localhost:3306/fitpath?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root            # <-- your local MySQL user
+    password: "Rubber22"     # <-- your local MySQL password
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
