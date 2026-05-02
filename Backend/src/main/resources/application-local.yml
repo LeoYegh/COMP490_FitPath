@@ -4,10 +4,10 @@ spring:
       on-profile: local
 
   datasource:
-    url: jdbc:mysql://fitpath.cg7ys4qcefrj.us-east-1.rds.amazonaws.com:3306/fitpath?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: admin            # <-- your local MySQL user
-    password: "THISisaPASSWORD8"     # <-- your local MySQL password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://db.hbghiqwugsyofztmepbn.supabase.co:5432/postgres?user=postgres&password=Scrum491@GymBros
+    username: hbghiqwugsyofztmepbn           
+    password: ""    
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
