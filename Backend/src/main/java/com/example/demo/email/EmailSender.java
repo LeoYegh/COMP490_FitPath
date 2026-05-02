@@ -1,3 +1,4 @@
+
 /**
  * Title: EmailSender.java
  *
@@ -16,7 +17,7 @@ public interface EmailSender {
     /**
      * Sends an email to a specified recipient with the given email content.
      *
-     * @param to The email address of the recipient.
+     * @param to    The email address of the recipient.
      * @param email The content (body) of the email, typically in HTML format.
      */
     void send(String to, String email);

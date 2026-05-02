@@ -27,13 +27,19 @@ export default function Login({ setIsLoggedIn }) {
       localStorage.setItem("currentUserEmail", email);
 
       // Update App state so Navbar shows Dashboard
-      setIsLoggedIn(true);
+      if (typeof setIsLoggedIn === "function") {
+        setIsLoggedIn(true);
+      }
 
       // Redirect to dashboard
       navigate("/Dashboard");
 
     } catch (err) {
-      setMessage("Invalid email or password.");
+      if (axios.isAxiosError(err) && err.response?.status === 401) {
+        setMessage("Invalid email or password.");
+      } else {
+        setMessage("Login failed. Please try again.");
+      }
     }
 
     setIsLoading(false);

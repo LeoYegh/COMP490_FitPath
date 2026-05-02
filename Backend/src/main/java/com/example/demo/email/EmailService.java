@@ -36,15 +36,17 @@ public class EmailService implements EmailSender {
     private final JavaMailSender mailSender;
 
     /**
-     * Sends an email asynchronously to a specified recipient with the given HTML content.
+     * Sends an email asynchronously to a specified recipient with the given HTML
+     * content.
      * <p>
      * The subject is hardcoded to "Confirm your email" and the sender is hardcoded
      * to "leoyegh@gmail.com". The email content is treated as HTML.
      * </p>
      *
-     * @param to The email address of the recipient.
+     * @param to    The email address of the recipient.
      * @param email The content (body) of the email, usually HTML.
-     * @throws IllegalStateException if a {@link MessagingException} occurs during the email sending process.
+     * @throws IllegalStateException if a {@link MessagingException} occurs during
+     *                               the email sending process.
      */
     @Override
     @Async
