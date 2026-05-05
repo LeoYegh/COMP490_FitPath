@@ -8,11 +8,13 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }) => {
+    const storedEmail = localStorage.getItem('userEmail');
     const [isSetupComplete, setIsSetupComplete] = useState(false);
     // CRITICAL: Initialize isLoading as true so the app waits for the DB check
     const [isLoading, setIsLoading] = useState(true);
     const [userMetrics, setUserMetrics] = useState(DEFAULT_GOALS);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(storedEmail ? { email: storedEmail } : null);
+    const [isAuthenticated, setIsAuthenticated] = useState(Boolean(storedEmail));
 
     const saveUserProfile = (data) => {
         setUserMetrics(data);
@@ -22,6 +24,7 @@ export const UserProvider = ({ children }) => {
     };
 
     const logout = () => {
+        setIsAuthenticated(false);
         setIsSetupComplete(false);
         setUserMetrics(DEFAULT_GOALS);
         setUser(null);
@@ -30,7 +33,17 @@ export const UserProvider = ({ children }) => {
         localStorage.removeItem('userEmail'); 
     };
 
+    const markAuthenticated = (email) => {
+        if (!email) return;
+        setUser({ email });
+        setIsAuthenticated(true);
+        localStorage.setItem('userEmail', email);
+    };
+
     const checkExistingSetup = async (email) => {
+        if (email) {
+            setIsAuthenticated(true);
+        }
         setIsLoading(true); // Start loading
         try {
             const res = await fetch(`http://localhost:5000/api/calorie/me?email=${email}`);
@@ -62,11 +75,13 @@ export const UserProvider = ({ children }) => {
     const value = {
         user,
         setUser,
+        isAuthenticated,
         userMetrics,
         isSetupComplete,
         isLoading,           // MUST BE HERE
         checkExistingSetup,  // MUST BE HERE
         saveUserProfile,
+        markAuthenticated,
         logout,
     };
 
