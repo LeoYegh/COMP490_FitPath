@@ -18,7 +18,7 @@ public class CalorieLogController {
 
     @PostMapping(path = "/me")
     public CalorieLog calorieLogForUser(
-            @AuthenticationPrincipal AppUser currentUser,
+            @RequestParam String email ,
             @RequestParam Integer calories,
             @RequestParam Integer protein,
             @RequestParam Integer fat,
@@ -29,8 +29,8 @@ public class CalorieLogController {
         LocalDate logDate = (date != null) ? LocalDate.parse(date) : LocalDate.now();
 
         return calorieLogService.calorieLoggerUser(
-                currentUser,
-                logDate,
+                email,
+                null,
                 mealType,
                 calories,
                 protein,

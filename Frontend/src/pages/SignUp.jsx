@@ -73,13 +73,12 @@ export default function SignUp() {
         password: form.password,
       };
 
-
       const res = await fetch(`${API_BASE}${ENDPOINT}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payloadToSend),
       });
-
+      
       const ct = res.headers.get("content-type") || "";
       const payload = ct.includes("application/json")
         ? await res.json()
@@ -93,12 +92,19 @@ export default function SignUp() {
         throw new Error(msg || `Request failed with status ${res.status}`);
       }
 
+      // --- PLACEMENT START ---
+      // We save the email here while form.email still contains the user's input.
+      localStorage.setItem("userEmail", form.email);
+      // --- PLACEMENT END ---
+
       const successMsg =
         typeof payload === "string" && payload.trim().length > 0
           ? `Registered! Token: ${payload}`
           : "Registered! Check your email to confirm.";
 
       setMessage(successMsg);
+
+      // This clears the form, which is why we save to localStorage BEFORE this line.
       setForm({
         firstName: "",
         lastName: "",

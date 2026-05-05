@@ -26,7 +26,6 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class AppUser implements UserDetails {
-
     /**
      * The unique identifier (primary key) for the user.
      * The strategy is set to IDENTITY, allowing the database to generate the value.
@@ -74,8 +73,7 @@ public class AppUser implements UserDetails {
      * Flag indicating if the user account is enabled (e.g., confirmed or active). Defaults to {@code true}
      * so email confirmation is not required for login.
      */
-    private Boolean enabled = true;
-
+    private Boolean enabled = true; 
     /**
      * Constructs a new AppUser with essential details.
      *
@@ -127,7 +125,7 @@ public class AppUser implements UserDetails {
     public String getUsername() { 
         return email; 
     }
-
+    
     /**
      * Indicates whether the user's account has expired.
      *

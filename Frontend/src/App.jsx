@@ -10,7 +10,8 @@ import Dashboard from "./pages/Dashboard";
 // --- NEW IMPORTS FOR USER PROFILE MANAGEMENT ---
 import UserProfileSetup from './pages/UserProfileSetup';
 import { UserProvider, useUser } from './Context/UserContext';
-
+// Add { useEffect } to this line!
+import React, { useEffect } from 'react'; 
 
 /**
  * Component Name: DashboardGatekeeper
@@ -21,11 +22,41 @@ import { UserProvider, useUser } from './Context/UserContext';
  * This is used specifically for the '/Dashboard' route.
  */
 const DashboardGatekeeper = () => {
-    const { isSetupComplete, userMetrics, saveUserProfile } = useUser();
-    
+    const { 
+        isSetupComplete, 
+        isLoading, 
+        checkExistingSetup, 
+        userMetrics, 
+        saveUserProfile 
+    } = useUser();
+
+    useEffect(() => {
+        const email = localStorage.getItem("userEmail");
+        // 2. If we have an email but don't know if setup is done, ask the DB
+        if (email && !isSetupComplete) {
+            checkExistingSetup(email);
+        }
+    }, [isSetupComplete, checkExistingSetup]);
+
+    // 3. While the database is being checked, show a loading message
+    // This prevents the setup form from showing up prematurely
+    if (isLoading && !isSetupComplete) {
+        return (
+            <div style={{ 
+                display: 'flex', 
+                height: '100vh', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                backgroundColor: '#1a1a1a', 
+                color: 'white' 
+            }}>
+                <h2>Loading your profile...</h2>
+            </div>
+        );
+    }
+
+    // 4. If the check finished and we still have no data, show the form
     if (!isSetupComplete) {
-        // If setup is NOT complete, show the setup form.
-        // Assuming UserProfileSetup is now located in './pages/'
         return (
             <UserProfileSetup 
                 onSave={saveUserProfile} 
@@ -34,8 +65,7 @@ const DashboardGatekeeper = () => {
         );
     }
 
-    // If setup IS complete, show the full Dashboard.
-    // We pass the sleepGoal dynamically to keep the Dashboard flexible (though it can also read it directly from context).
+    // 5. If data was found or just saved, show the Dashboard
     return <Dashboard />;
 };
 

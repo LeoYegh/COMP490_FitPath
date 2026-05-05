@@ -24,7 +24,7 @@ export default function Login({ setIsLoggedIn }) {
       await axios.post(`${API_BASE}/login`, { email, password });
 
       // Save email to localStorage if needed later
-      localStorage.setItem("currentUserEmail", email);
+      localStorage.setItem("userEmail", email);
 
       // Update App state so Navbar shows Dashboard
       if (typeof setIsLoggedIn === "function") {
