@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
+import { useUser } from "../Context/UserContext";
 
 const API_BASE = "http://localhost:5000/api/v1/auth";
 
 export default function Login({ setIsLoggedIn }) {
   const navigate = useNavigate();
+  const { markAuthenticated } = useUser();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,8 +25,8 @@ export default function Login({ setIsLoggedIn }) {
       // Attempt login
       await axios.post(`${API_BASE}/login`, { email, password });
 
-      // Save email to localStorage if needed later
-      localStorage.setItem("userEmail", email);
+      // Keep auth state in global context and persist email
+      markAuthenticated(email);
 
       // Update App state so Navbar shows Dashboard
       if (typeof setIsLoggedIn === "function") {

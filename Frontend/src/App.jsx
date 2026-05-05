@@ -69,6 +69,11 @@ const DashboardGatekeeper = () => {
     return <Dashboard />;
 };
 
+const LoggedOutOnly = ({ children }) => {
+    const { isAuthenticated } = useUser();
+    return isAuthenticated ? <Navigate to="/Dashboard" replace /> : children;
+};
+
 
 /**
  * Component Name: App
@@ -91,8 +96,24 @@ function App() {
                     <Routes>
                         {/* Static Pages */}
                         <Route path="/" exact element={<Home />} />
-                        <Route path="/login" exact element={<Login />} />
-                        <Route path="/signUp" exact element={<SignUp />} />
+                        <Route
+                            path="/login"
+                            exact
+                            element={
+                                <LoggedOutOnly>
+                                    <Login />
+                                </LoggedOutOnly>
+                            }
+                        />
+                        <Route
+                            path="/signUp"
+                            exact
+                            element={
+                                <LoggedOutOnly>
+                                    <SignUp />
+                                </LoggedOutOnly>
+                            }
+                        />
                         <Route path="/About" exact element={<About />} />
                         <Route path="/ContactUs" exact element={<ContactUs />} />
 

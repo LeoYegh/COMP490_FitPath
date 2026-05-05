@@ -5,7 +5,7 @@ import { useUser } from '../Context/UserContext';
 import '../styles/NavBar.css';
 
 function Navbar() {
-  const { isSetupComplete, logout } = useUser();
+  const { isAuthenticated, logout } = useUser();
   const navigate = useNavigate(); // Used to redirect after logout
 
   const handleLogout = () => {
@@ -19,15 +19,16 @@ function Navbar() {
         <img src={logo} alt="FitPal Logo" />
       </div>
       <div className='rightSide'>
+        {isAuthenticated && (
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
+        )}
         <Link to='/'>Home</Link>
 
-        {isSetupComplete ? (
+        {isAuthenticated ? (
           <>
             <Link to='/Dashboard'>Dashboard</Link>
-            {/* We use a button or a Link that triggers the handleLogout */}
-            <button className="logout-btn" onClick={handleLogout} style={{background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', font: 'inherit'}}>
-                Logout
-            </button>
           </>
         ) : (
           <>
@@ -36,7 +37,7 @@ function Navbar() {
           </>
         )}
 
-        <Link to='/About'>About us</Link>
+        <Link to='/About'>About Us</Link>
         <Link to='/ContactUs'>Contact Us</Link>
       </div>
     </div>
