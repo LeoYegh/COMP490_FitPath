@@ -1,69 +1,143 @@
-
-/** 
- *    Created on : Nov 17, 2025
- *    Author     : Feather
- *    ContactUs.css
- *    CSS file for the contactUs page
- */
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
-    padding: 0;
+.contact-us-page {
+  min-height: 100vh;
+  padding: 56px 20px;
+  background: linear-gradient(170deg, #1d274a 0%, #25325a 60%, #1f2b4f 100%);
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+.contact-us-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: stretch;
 }
 
-.form-card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    width: 300px;
+.contact-us-info,
+.contact-us-form {
+  border-radius: 14px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: none;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
+.contact-us-info {
+  color: #f4f6ff;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-label {
-    margin-top: 10px;
-    font-size: 14px;
+.contact-us-kicker {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d4dcff;
 }
 
-input,
-select {
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
+.contact-us-info h1 {
+  margin: 0;
+  line-height: 1.2;
+  font-size: clamp(1.8rem, 2.4vw, 2.35rem);
+  color: #ffffff;
 }
 
-button {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.contact-us-info > p {
+  margin-top: 16px;
+  line-height: 1.65;
+  color: #cad4fa;
 }
 
-button:hover {
-    background-color: #45a049;
+.contact-us-meta {
+  margin: 10px 0 0;
+  font-size: 0.95rem;
+  color: #dce5ff;
 }
 
-.message {
-    margin-top: 10px;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 14px;
+.contact-us-form {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.contact-us-form h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.contact-us-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #e8eeff;
+}
+
+.contact-us-form input,
+.contact-us-form textarea {
+  width: 100%;
+  margin-bottom: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 11px 13px;
+  font-size: 0.98rem;
+  color: #1a1e2d;
+  background: rgba(255, 255, 255, 0.95);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-sizing: border-box;
+}
+
+.contact-us-form textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.contact-us-form input:focus,
+.contact-us-form textarea:focus {
+  outline: none;
+  border-color: #5c79ee;
+  box-shadow: 0 0 0 2px rgba(92, 121, 238, 0.18);
+  background: #ffffff;
+}
+
+.contact-us-form button {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-top: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #4b6cff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.contact-us-form button:hover {
+  background: #3a5ae8;
+}
+
+.contact-us-status {
+  margin-top: 14px;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: #e0f8e0;
+  color: #116611;
+  border: 1px solid #a4e3a4;
+}
+
+@media (max-width: 900px) {
+  .contact-us-page {
+    padding: 34px 16px;
+  }
+
+  .contact-us-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-us-info,
+  .contact-us-form {
+    padding: 24px;
+  }
 }

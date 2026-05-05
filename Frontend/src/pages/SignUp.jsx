@@ -123,12 +123,16 @@ export default function SignUp() {
     <div className="container">
       <div className="form-card">
         <h1>Create Account</h1>
-        <form onSubmit={handleSubmit}>
+        <p className="signup-subtitle">
+          Join FitPath and start building a healthier routine.
+        </p>
+        <form className="signup-form" onSubmit={handleSubmit}>
           <div className="name-group">
             <div>
               <label>First Name</label>
               <input
                 type="text"
+                placeholder="Enter first name"
                 value={form.firstName}
                 onChange={(e) => updateField("firstName", e.target.value)}
                 required
@@ -138,6 +142,7 @@ export default function SignUp() {
               <label>Last Name</label>
               <input
                 type="text"
+                placeholder="Enter last name"
                 value={form.lastName}
                 onChange={(e) => updateField("lastName", e.target.value)}
                 required
@@ -148,6 +153,7 @@ export default function SignUp() {
           <label>Email</label>
           <input
             type="email"
+            placeholder="Enter email address"
             value={form.email}
             onChange={(e) => updateField("email", e.target.value)}
             required
@@ -156,6 +162,7 @@ export default function SignUp() {
           <label>Password</label>
           <input
             type="password"
+            placeholder="Create a password"
             value={form.password}
             onChange={(e) => updateField("password", e.target.value)}
             required
