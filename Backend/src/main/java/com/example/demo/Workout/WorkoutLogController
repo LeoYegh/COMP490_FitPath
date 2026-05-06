@@ -1,0 +1,26 @@
+package com.example.demo.Workout;
+
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/v1/workouts")
+@CrossOrigin
+public class WorkoutLogController {
+
+    private final WorkoutLogService service;
+
+    public WorkoutLogController(WorkoutLogService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    public List<WorkoutLog> getWorkoutLogs() {
+        return service.getAllWorkoutLogs();
+    }
+
+    @PostMapping
+    public WorkoutLog createWorkoutLog(@RequestBody WorkoutLog workoutLog) {
+        return service.saveWorkoutLog(workoutLog);
+    }
+}
