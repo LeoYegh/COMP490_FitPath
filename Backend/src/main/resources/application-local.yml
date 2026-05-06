@@ -3,20 +3,18 @@ spring:
     activate:
       on-profile: local
 
+
   datasource:
-    url:  jdbc:mysql://localhost:3306/fitpath?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: root         # <-- your local MySQL user
-    password: "Rubber22"     # <-- your local MySQL password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://aws-1-us-east-1.pooler.supabase.com:5432/postgres?sslmode=require
+    username: postgres.hbghiqwugsyofztmepbn
+    password: "Scrum491@GymBros"
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true
-    show-sql: true
 
+    show-sql: true
   mail:
     host: smtp.gmail.com
     port: 587
