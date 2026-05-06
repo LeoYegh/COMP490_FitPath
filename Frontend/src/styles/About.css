@@ -112,7 +112,7 @@
 }
 
 .about-grid,
-.team-grid {
+.about-team-grid {
     margin-top: 1.35rem;
     display: grid;
     gap: 1rem;
@@ -142,15 +142,15 @@
     color: #d2ddff;
 }
 
-.team-section {
+.about-team-section {
     margin-top: 2.6rem;
 }
 
-.team-grid {
+.about-team-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-.team-card {
+.about-team-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 16px;
@@ -159,7 +159,7 @@
     box-shadow: none;
 }
 
-.team-avatar {
+.about-team-avatar {
     width: 52px;
     height: 52px;
     margin: 0 auto 0.8rem;
@@ -172,13 +172,13 @@
     font-weight: 700;
 }
 
-.team-card h3 {
+.about-team-card h3 {
     margin: 0;
     font-size: 1.05rem;
     color: #f4f6ff;
 }
 
-.team-card p {
+.about-team-card p {
     margin: 0.45rem 0 0;
     color: #475569;
     font-size: 0.95rem;
